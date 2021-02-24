@@ -1,22 +1,4 @@
-#------------------------------------------------------------------------------
-# Variables
-#------------------------------------------------------------------------------
-locals {
-  sonar_db_engine_version = "11.6"
-  sonar_db_port           = 5432
-  sonar_db_instance_size  = var.db_instance_size
-  sonar_db_name           = var.db_name
-  sonar_db_username       = var.db_username
-  sonar_db_password       = var.db_password == "" ? random_password.master_password.result : var.db_password
-}
 
-#------------------------------------------------------------------------------
-# Random password for RDS
-#------------------------------------------------------------------------------
-resource "random_password" "master_password" {
-  length  = 10
-  special = false
-}
 
 #------------------------------------------------------------------------------
 # AWS Cloudwatch Logs
@@ -71,6 +53,18 @@ module "ecs_fargate" {
     }
   ]
   environment = [
+    {
+      name="LD_ENV_production"
+      value=var.production_key
+    },
+    {
+      name="LD_ENV_staging"
+      value=var.staging_key
+    },
+    {
+      name="LD_ENV_development"
+      value=var.development_key
+    },
   ]
   log_configuration = {
     logDriver = "awslogs"
