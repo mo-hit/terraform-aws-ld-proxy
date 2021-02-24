@@ -63,7 +63,7 @@ module "ecs_fargate" {
     },
     {
       name="LD_ENV_development"
-      value=var.development_key
+      value=var.dev_key
     },
   ]
   log_configuration = {
