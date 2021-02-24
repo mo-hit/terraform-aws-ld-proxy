@@ -19,11 +19,11 @@ module "ecs_fargate" {
   version = "2.0.22"
   # source = "../terraform-aws-ecs-fargate"
 
-  name_prefix                  = "${var.name_prefix}-sonar"
+  name_prefix                  = "${var.name_prefix}-ld-proxy"
   vpc_id                       = var.vpc_id
   public_subnets_ids           = var.public_subnets_ids
   private_subnets_ids          = var.private_subnets_ids
-  container_name               = "${var.name_prefix}-sonar"
+  container_name               = "${var.name_prefix}-ld-proxy"
   container_image              = "launchdarkly/ld-relay:v6"
   container_cpu                = 1024
   container_memory             = 8192
@@ -70,7 +70,7 @@ module "ecs_fargate" {
     logDriver = "awslogs"
     options = {
       "awslogs-region"        = var.region
-      "awslogs-group"         = "/ecs/service/${var.name_prefix}-sonar"
+      "awslogs-group"         = "/ecs/service/${var.name_prefix}-ld-proxy"
       "awslogs-stream-prefix" = "ecs"
     }
     secretOptions = null
