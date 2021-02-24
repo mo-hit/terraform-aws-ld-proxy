@@ -8,7 +8,7 @@ module aws_cw_logs {
   version = "1.0.7"
   # source  = "../terraform-aws-cloudwatch-logs"
 
-  logs_path = "/ecs/service/${var.name_prefix}-sonar"
+  logs_path = "/ecs/service/${var.name_prefix}-ld-proxy"
 }
 
 #------------------------------------------------------------------------------
