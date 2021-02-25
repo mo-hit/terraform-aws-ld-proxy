@@ -65,6 +65,10 @@ module "ecs_fargate" {
       name="LD_ENV_development"
       value=var.dev_key
     },
+    {
+      name="USE_EVENTS"
+      value=true
+    }
   ]
   log_configuration = {
     logDriver = "awslogs"
