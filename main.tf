@@ -68,6 +68,10 @@ module "ecs_fargate" {
     {
       name="USE_EVENTS"
       value=true
+    }, 
+    {
+      name="LOG_LEVEL"
+      value="debug"
     }
   ]
   log_configuration = {
