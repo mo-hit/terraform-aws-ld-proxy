@@ -74,6 +74,7 @@ module "ecs_fargate" {
       value="debug"
     }
   ]
+  lb_target_group_health_check_path = "/status"
   log_configuration = {
     logDriver = "awslogs"
     options = {
